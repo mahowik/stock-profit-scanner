@@ -2,6 +2,7 @@ package com.mahowik.scanner.service;
 
 import com.mahowik.scanner.data.DayRecord;
 import com.mahowik.scanner.data.Portfolio;
+import com.mahowik.scanner.util.MathUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
@@ -56,7 +57,7 @@ public class TradeStockSimulatorService {
 
 				if (printLog) {
 					log.info("Threshold price to BUY was reached (" + dayRecord.getDate() + "): " +
-							price + "$, from local MIN of: " + localMin + "$");
+							MathUtils.roundUp(price) + "$, from local MIN of: " + MathUtils.roundUp(localMin) + "$");
 				}
 
 				portfolio.setSharePrice(price);
@@ -82,7 +83,7 @@ public class TradeStockSimulatorService {
 
 				if (printLog) {
 					log.info("Threshold price to SELL was reached (" + dayRecord.getDate() + "): " +
-							price + "$ from local MAX of: " + localMax + "$");
+							MathUtils.roundUp(price) + "$ from local MAX of: " + MathUtils.roundUp(localMax) + "$");
 				}
 
 				portfolio.setSharePrice(price);

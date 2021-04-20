@@ -2,6 +2,7 @@ package com.mahowik.scanner.service;
 
 import com.mahowik.scanner.data.DayRecord;
 import com.mahowik.scanner.data.Portfolio;
+import com.mahowik.scanner.util.MathUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,7 +88,7 @@ public class StockProfitScannerService {
 		log.info("### Portfolio closed at: " + lastDayRecord.getDate());
 
 		log.info("### Market performance: " +
-				(int) ((lastDayRecord.getAveragePrice() / firstDayRecord.getAveragePrice()) * 100.0) + "%");
+				MathUtils.roundUp((lastDayRecord.getAveragePrice() / firstDayRecord.getAveragePrice()) * 100.0) + "%");
 		log.info("### Portfolio MAX performance: " + portfolio.getPerformance() + "%, " +
 				"to buy at: " + bestThresholdToBuy + "% from local MIN, " +
 				"to sell at: " + bestThresholdToSell + "% from local MAX");

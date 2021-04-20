@@ -1,7 +1,6 @@
 package com.mahowik.scanner.data;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
+import com.mahowik.scanner.util.MathUtils;
 
 public class Portfolio {
 
@@ -38,7 +37,7 @@ public class Portfolio {
 
 	public double getPerformance() {
 		double performance = (getPortfolioValue() / initCache) * 100.0;
-		return new BigDecimal(performance).setScale(2, RoundingMode.UP).doubleValue();
+		return MathUtils.roundUp(performance);
 	}
 
 	public boolean isTurnToBuy() {
