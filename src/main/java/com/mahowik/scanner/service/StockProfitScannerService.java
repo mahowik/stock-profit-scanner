@@ -19,9 +19,6 @@ public class StockProfitScannerService {
 
 	private static final Logger log = LogManager.getLogger(StockProfitScannerService.class);
 
-	@Value("${resource.name}")
-	private String resource;
-
 	@Value("${min.threshold}")
 	private double minThreshold;
 	@Value("${max.threshold}")
@@ -50,7 +47,7 @@ public class StockProfitScannerService {
 		double bestThresholdToBuy = 0;
 		double bestThresholdToSell = 0;
 
-		List<String[]> outputData = new ArrayList<>();
+		List<String[]> performanceData = new ArrayList<>();
 
 		for (double thresholdToBuy = minThreshold; thresholdToBuy <= maxThreshold; thresholdToBuy += thresholdStep) {
 			for (double thresholdToSell = minThreshold; thresholdToSell <= maxThreshold; thresholdToSell += thresholdStep) {
@@ -67,7 +64,7 @@ public class StockProfitScannerService {
 					bestThresholdToSell = thresholdToSell;
 				}
 
-				outputData.add(new String[]{
+				performanceData.add(new String[]{
 						String.valueOf(thresholdToBuy),
 						String.valueOf(thresholdToSell),
 						String.valueOf(performance)});
@@ -75,7 +72,7 @@ public class StockProfitScannerService {
 		}
 
 		log.info("\n\n");
-		log.info("### Historical stock data resource: " + resource);
+		log.info("### Historical stock data resource: " + dataProviderService.getStockResourceName());
 
 		Portfolio portfolio = tradeStockSimulatorService.simulateTrading(
 				bestThresholdToBuy / 100.0,
@@ -93,8 +90,8 @@ public class StockProfitScannerService {
 				"to buy at: " + bestThresholdToBuy + "% from local MIN, " +
 				"to sell at: " + bestThresholdToSell + "% from local MAX");
 
-		dataProviderService.writeCSVFile(outputData, "output_(" + firstDayRecord.getDate() + " - " +
-				lastDayRecord.getDate() + ")_" + resource);
+		dataProviderService.writeCSVFile(new String[]{"% threshold to buy", "% threshold to sell", "% performance"},
+				performanceData, firstDayRecord.getDate(), lastDayRecord.getDate());
 	}
 
 	private DayRecord getFirstDayRecord(List<DayRecord> historicData) {

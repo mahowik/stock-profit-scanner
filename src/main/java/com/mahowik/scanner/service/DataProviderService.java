@@ -26,7 +26,7 @@ public class DataProviderService {
 	private static final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 	@Value("${resource.name}")
-	private String resource;
+	private String stockResourceName;
 
 	@Value("${start.date}")
 	private String start;
@@ -35,7 +35,7 @@ public class DataProviderService {
 
 
 	public List<DayRecord> getHistoricData() {
-		List<String[]> rows = readCSVFile(resource);
+		List<String[]> rows = readCSVFile(stockResourceName);
 		if (rows != null) {
 			Date startDate = parseDate(start);
 			Date endDate = parseDate(end);
@@ -56,21 +56,28 @@ public class DataProviderService {
 			CSVReader csvReader = new CSVReader(new FileReader(new ClassPathResource(resource).getFile()));
 			return csvReader.readAll();
 		} catch (Exception e) {
-			log.error("error to read CVS historic stock data file: ", e);
+			log.error("error to read CVS data file: ", e);
 		}
 		return null;
 	}
 
-	public void writeCSVFile(List<String[]> data, String fileName) {
+	public void writeCSVFile(String[] headers, List<String[]> data, Date firstDay, Date lastDay) {
 		try {
-			CSVWriter csvWriter = new CSVWriter(new FileWriter("output/" + fileName), ',', '"',
-					'"', ",\n");
-			csvWriter.writeNext(new String[]{"% buy", "% sell", "% performance"});
+
+			String fileName = "output/performance_(" + dateFormat.format(firstDay) + " - " +
+					dateFormat.format(lastDay) + ")_" + stockResourceName;
+
+			CSVWriter csvWriter = new CSVWriter(new FileWriter(fileName), ',', '"', '"', ",\n");
+			csvWriter.writeNext(headers);
 			csvWriter.writeAll(data);
 			csvWriter.close();
 		} catch (Exception e) {
-			log.error("error to write CVS historic stock data file: ", e);
+			log.error("error to write CVS data file: ", e);
 		}
+	}
+
+	public String getStockResourceName() {
+		return stockResourceName;
 	}
 
 	private Date parseDate(String source) {
