@@ -1,0 +1,18 @@
+- Starting StockProfitScannerApplication using Java 1.8.0_282 on mah-mint with PID 318914 (/home/mah/Downloads/stock-profit-scanner/target/classes started by mah in /home/mah/Downloads/stock-profit-scanner)
+- No active profile set, falling back to default profiles: default
+- Started StockProfitScannerApplication in 1.02 seconds (JVM running for 2.713)
+- 
+
+
+- ### Historical stock data resource: spy.csv
+- Threshold price to BUY was reached (Mon Jun 19 16:00:00 EDT 1995): 54.48$, from local MIN of: 42.82$
+- Threshold price to SELL was reached (Mon Mar 12 16:00:00 EST 2001): 120.32$ from local MAX of: 155.75$
+- Threshold price to BUY was reached (Mon Jun 02 16:00:00 EDT 2003): 98.08$, from local MIN of: 77.07$
+- Threshold price to SELL was reached (Tue Jul 15 16:00:00 EDT 2008): 121.69$ from local MAX of: 157.53$
+- Threshold price to BUY was reached (Thu Apr 09 16:00:00 EDT 2009): 85.39$, from local MIN of: 67.1$
+- Threshold price to SELL was reached (Thu Mar 12 16:00:00 EDT 2020): 261.94$ from local MAX of: 339.08$
+- Threshold price to BUY was reached (Thu Apr 09 16:00:00 EDT 2020): 277.74$, from local MIN of: 218.26$
+- ### Portfolio started at: Fri Jan 29 16:00:00 EST 1993
+- ### Portfolio closed at: Thu Apr 15 16:00:00 EDT 2021
+- ### Market performance: 946.03%
+- ### Portfolio MAX performance: 1255.89%, to buy at: 27.25% from local MIN, to sell at: 22.75% from local MAX
