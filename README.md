@@ -3,7 +3,7 @@
 Stock profit scanner was created to find optimal points (% threshold from local MIN/MAX) to buy/sell stocks (like S&P500, Nasdaq etc) and outperform the market or time the market. 
 What is not possible in theory :)
 
-DISCLAMER: IT'S NOT A RECOMMENDATION FOR TRADE! USE THIS FOR YOUR OWN RESPONSIBILITY AND RISK!!!
+DISCLAIMER: IT'S NOT A RECOMMENDATION FOR TRADE! USE THIS FOR YOUR OWN RESPONSIBILITY AND RISK!!!
 
 ### S&P 500 output example:
 - Historical stock data resource: spy.csv
